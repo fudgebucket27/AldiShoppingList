@@ -1,0 +1,204 @@
+﻿.main-container {
+    min-height: 100vh;
+}
+
+/* Desktop layout - make left pane fixed with scroll */
+.desktop-layout {
+    height: 100vh;
+    overflow: hidden;
+}
+
+.left-pane {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 50%;
+    height: 100vh;
+    overflow-y: auto;
+    padding: 20px;
+    background: white;
+    border-right: 1px solid #dee2e6;
+}
+
+.right-pane {
+    margin-left: 50%;
+    width: 50%;
+    height: 100vh;
+    overflow-y: auto;
+    padding-left: 20px;
+}
+
+.product-card {
+    transition: transform 0.2s;
+}
+
+    .product-card:hover {
+        transform: translateY(-2px);
+    }
+
+    .product-card img {
+        width: 80px;
+        height: 80px;
+        object-fit: cover;
+    }
+
+.qty-column {
+    min-width: 140px;
+}
+
+.qty-column-mobile {
+    min-width: 100px;
+}
+
+
+.dragging {
+    opacity: 0.5;
+}
+
+.drag-over {
+    border-top: 2px solid #007bff;
+}
+
+.drag-handle {
+    cursor: grab;
+}
+
+    .drag-handle:active {
+        cursor: grabbing;
+    }
+
+.qty-print {
+    display: none;
+}
+
+.search-section {
+    position: sticky;
+    top: 0;
+    background: white;
+    z-index: 1020;
+    padding: 20px 20px 15px 20px;
+    margin: -20px -20px 35px -20px;
+    border-bottom: 1px solid #dee2e6;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Mobile-specific styles */
+.cart-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1050;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.cart-badge {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: #dc3545;
+    color: white;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+/* Mobile search section styling */
+.mobile-search-section {
+    position: sticky;
+    top: 0;
+    background: white;
+    z-index: 1020;
+    padding: 15px;
+    margin: -15px -15px 35px -15px;
+    border-bottom: 1px solid #dee2e6;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Mobile results container - add bottom padding for floating cart */
+.mobile-results-container {
+    padding-bottom: 100px;
+}
+
+/* Mobile overrides - disable fixed layout on mobile */
+@media (max-width: 767.98px) {
+    .mobile-hidden {
+        display: none !important;
+    }
+
+    .mobile-modal .modal-dialog {
+        margin: 0;
+        height: 100vh;
+        max-width: 100%;
+    }
+
+    .mobile-modal .modal-content {
+        height: 100vh;
+        border-radius: 0;
+    }
+
+    .mobile-modal .modal-body {
+        flex: 1;
+        overflow-y: auto;
+    }
+
+    /* Reset desktop layout for mobile */
+    .desktop-layout {
+        height: auto !important;
+        overflow: visible !important;
+    }
+
+    .left-pane {
+        position: static !important;
+        width: 100% !important;
+        height: auto !important;
+        overflow-y: visible !important;
+        border-right: none !important;
+    }
+
+    .right-pane {
+        margin-left: 0 !important;
+        width: 100% !important;
+        height: auto !important;
+        overflow-y: visible !important;
+    }
+
+    #listTableMobile .qty-column-mobile {
+        width: 50px !important; /* Tighter qty column */
+    }
+
+    .remove-btn {
+        display: none !important;
+    }
+}
+
+@media (min-width: 768px) {
+    .cart-button {
+        display: none !important;
+    }
+
+    .desktop-layout {
+        display: flex !important;
+    }
+}
+
+@media print {
+    .no-print {
+        display: none !important;
+    }
+
+    .qty-print {
+        display: inline !important;
+    }
+
+    .qty-edit {
+        display: none !important;
+    }
+}

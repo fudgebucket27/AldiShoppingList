@@ -1,0 +1,141 @@
+﻿@{
+    ViewBag.Title = "Aldi Shopping List";
+}
+
+
+<div class="container-fluid main-container">
+    <!-- Desktop Layout -->
+    <div class="row h-100 desktop-layout d-none d-md-flex">
+        <!-- Left Pane - Shopping List (Desktop) -->
+        <div class="col-md-6 left-pane">
+            <h1 class="mb-4 text-center">Shopping List</h1>
+            <!-- Shopping list table -->
+            <div class="table-responsive">
+                <table class="table align-middle" id="listTable">
+                    <thead class="table-light">
+                        <tr>
+                            <th class="no-print" style="width: 40px;"><i class="bi bi-arrows-move text-muted"></i></th>
+                            <th>Item</th>
+                            <th class="qty-column" style="width: 140px;">Quantity</th>
+                            <th class="text-end">Price</th>
+                            <th class="text-end">Subtotal</th>
+                            <th class="no-print"></th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                    <tfoot class="fw-bold d-none" id="totalRow">
+                        <tr>
+                            <td colspan="4" class="text-end">Total:</td>
+                            <td class="text-end" id="grandTotal">$0.00</td>
+                            <td class="no-print"></td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+            <button id="copyChecklistBtn" class="btn btn-success d-none no-print mt-3">
+                <i class="bi bi-clipboard"></i> Copy to Notes
+            </button>
+            <div id="emptyMessage" class="text-center mt-5">
+                <i class="bi bi-cart text-muted" style="font-size: 4rem;"></i>
+                <p class="text-muted mt-3">The shopping list is empty.<br></p>
+            </div>
+        </div>
+
+        <!-- Right Pane - Search Results (Desktop) -->
+        <div class="col-md-6 right-pane">
+            <div class="search-section">
+                <h1 class="mb-4 text-center">Aldi Product Search</h1>
+                <!-- Search bar -->
+                <form id="searchForm" class="mb-3" autocomplete="off">
+                    <div class="position-relative">
+                        <input id="searchInput" type="text" class="form-control" placeholder="Start typing to search…" />
+                        <span id="loader" class="spinner-border spinner-border-sm position-absolute end-0 top-50 translate-middle-y d-none" role="status"></span>
+                    </div>
+                </form>
+            </div>
+            <!-- Results -->
+            <div id="results">
+                <div class="text-center mt-5">
+                    <i class="bi bi-search text-muted" style="font-size: 4rem;"></i>
+                    <p class="text-muted mt-3">Start typing above to search the Thuringowa Aldi store...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Layout -->
+    <div class="d-md-none">
+        <!-- Mobile Search Section -->
+        <div class="mobile-search-section">
+            <h1 class="mb-4 text-center">Aldi Product Search</h1>
+            <!-- Search bar -->
+            <form id="searchFormMobile" class="mb-3" autocomplete="off">
+                <div class="position-relative">
+                    <input id="searchInputMobile" type="text" class="form-control" placeholder="Start typing to search…" />
+                    <span id="loaderMobile" class="spinner-border spinner-border-sm position-absolute end-0 top-50 translate-middle-y d-none" role="status"></span>
+                </div>
+            </form>
+        </div>
+
+        <!-- Mobile Results -->
+        <div class="px-3 mobile-results-container" id="resultsMobile">
+            <div class="text-center mt-5">
+                <i class="bi bi-search text-muted" style="font-size: 4rem;"></i>
+                <p class="text-muted mt-3">Start typing above to search the Thuringowa Aldi store...</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Floating Cart Button (Mobile) -->
+<button class="btn btn-primary cart-button d-md-none" data-bs-toggle="modal" data-bs-target="#cartModal">
+    <i class="bi bi-cart3"></i>
+    <span class="cart-badge d-none" id="cartBadge">0</span>
+</button>
+
+<!-- Shopping Cart Modal (Mobile) -->
+<div class="modal fade mobile-modal" id="cartModal" tabindex="-1">
+    <div class="modal-dialog modal-fullscreen-sm-down">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5">Shopping List</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Shopping list table (Mobile) -->
+                <div class="table-responsive">
+                    <table class="table align-middle" id="listTableMobile">
+                        <thead class="table-light">
+                            <tr>
+                                <th class="no-print" style="width: 40px;"><i class="bi bi-arrows-move text-muted"></i></th>
+                                <th>Item</th>
+                                <th class="qty-column-mobile">Qty</th>
+                                <th class="text-end">Price</th>
+                                <th class="text-end">Total</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                        <tfoot class="fw-bold d-none" id="totalRowMobile">
+                            <tr>
+                                <td colspan="4" class="text-end">Total:</td>
+                                <td class="text-end" id="grandTotalMobile">$0.00</td>
+                            </tr>
+                            <tr>
+                             <td colspan="5" class="text-end no-print">
+                                    <button id="copyChecklistBtnMobile" class="btn btn-success me-2">
+                                        <i class="bi bi-clipboard"></i> Copy
+                                    </button>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                              </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+                <div id="emptyMessageMobile" class="text-center mt-5">
+                    <i class="bi bi-cart text-muted" style="font-size: 4rem;"></i>
+                    <p class="text-muted mt-3">The shopping list is empty.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
